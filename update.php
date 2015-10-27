@@ -1,4 +1,6 @@
 <?php
+require 'auth.php';
+
 if(isset($_GET['id']) && ctype_digit($_GET['id'])) {
 	$id = $_GET['id'];
 } else {
@@ -13,6 +15,7 @@ if(isset($_GET['id']) && ctype_digit($_GET['id'])) {
 <body>
 
 	<?php
+		readfile('navigation-tmpl.html');
 
 	if (isset($_POST['submit']))
 	{
@@ -42,8 +45,8 @@ if(isset($_GET['id']) && ctype_digit($_GET['id'])) {
 			$sql = sprintf("UPDATE users
 				SET name = '%s',
 				gender = '%s',
-				colour= '%s' WHERE id = %s", 
-				mysqli_real_escape_string($db, $name), 
+				colour= '%s' WHERE id = %s",
+				mysqli_real_escape_string($db, $name),
 				mysqli_real_escape_string($db, $gender),
 				mysqli_real_escape_string($db, $colour),
 				$id);

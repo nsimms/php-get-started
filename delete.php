@@ -15,6 +15,7 @@ else
 <body>
 
 <?php
+    readfile('navigation-tmpl.html');
 
 $db = mysqli_connect('localhost', 'root', '', 'test');
 

@@ -6,6 +6,8 @@
 <body>
 	<?php
 
+	readfile('navigation-tmpl.html');
+
 	$db = mysqli_connect('localhost', 'root', '', 'test');
 
 	$result = mysqli_query($db, "select * from users");
