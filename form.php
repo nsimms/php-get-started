@@ -10,7 +10,7 @@
     $password = '';
     $gender = '';
     $colour = '';
-    $languages =array();
+    $languages = array();
     $comments = '';
     $tc = '';
 

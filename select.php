@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>database</title>
+	<title>PHP database select</title>
 </head>
 <body>
-<?php
+	<?php
 
-$db = mysqli_connect('localhost', 'root', '', 'test');
+	$db = mysqli_connect('localhost', 'root', '', 'test');
 
-$result = mysqli_query($db, "select * from users");
+	$result = mysqli_query($db, "select * from users");
 
-foreach ($result as $row) {
-	$value = $row['name'];
-	echo $value;
-}
+	foreach ($result as $row) {
+	//$value = $row['name'];
+	//echo $value;
 
-mysqli_close($db);
+		printf("<li><span style='color:%s'>%s (%s)</span> <a href='update.php?id=%s'>edit</a> <a href='delete.php?id=%s'>delete</a></li>",
+			htmlspecialchars($row['colour']),
+			htmlspecialchars($row['name']),
+			htmlspecialchars($row['gender']),
+			htmlspecialchars($row['id']),
+			htmlspecialchars($row['id'])
+			);
+	}
 
-?>
+	mysqli_close($db);
+
+	?>
 </body>

@@ -30,54 +30,61 @@
         } else {
             $colour = $_POST['colour'];
         }
- 
+
         if($ok){
 
- $db = mysqli_connect('localhost', 'root', '', 'test');
+         $db = mysqli_connect('localhost', 'root', '', 'test');
 
- $sql = sprintf("INSERT INTO users(name, colour) VALUES ('%s', '%s')", $name, $colour);
+         $sql = sprintf("INSERT INTO users(name, gender, colour) VALUES ('%s', '%s', '%s')", 
+            mysqli_real_escape_string($db, $name), 
+            mysqli_real_escape_string($db, $gender),
+            mysqli_real_escape_string($db, $colour));
 
 //echo $sql;
 
-mysqli_query($db, $sql);
+         mysqli_query($db, $sql);
 
-}
-        
-    }
-    ?>
-    <form method="post" action="">
-        User name: <input type="text" name="name" value=<?php echo htmlspecialchars($name)?>><br>
-        Gender:
-        <input type="radio" name="gender" value="f"
+         mysqli_close($db);
+
+         echo '<p>User Added</p>';
+
+     }
+
+ }
+ ?>
+ <form method="post" action="">
+    User name: <input type="text" name="name" value=<?php echo htmlspecialchars($name)?>><br>
+    Gender:
+    <input type="radio" name="gender" value="f"
+    <?php
+    if($gender === 'f')
+        {echo ' checked';}
+    ?>>female
+    <input type="radio" name="gender" value="m"
+    <?php
+    if($gender === 'm')
+        {echo ' checked';}
+    ?>>male<br>
+    Favourite Colour:
+    <select name="colour">
+        <option value="">Please select...</option>
+        <option value="#f00"
         <?php
-        if($gender === 'f')
-            {echo ' checked';}
-        ?>>female
-        <input type="radio" name="gender" value="m"
+        if($colour === '#f00')
+            {echo ' selected';}
+        ?>>red</option>
+        <option value="#0f0"
         <?php
-        if($gender === 'm')
-            {echo ' checked';}
-        ?>>male<br>
-        Favourite Colour:
-        <select name="colour">
-            <option value="">Please select...</option>
-            <option value="#f00"
-            <?php
-            if($colour === '#f00')
-                {echo ' selected';}
-            ?>>red</option>
-            <option value="#0f0"
-            <?php
-            if($colour === '#0f0')
-                {echo ' selected';}
-            ?>>green</option>
-            <option value="#00f"
-            <?php
-            if($colour === '#00f')
-                {echo ' selected';}
-            ?>>blue</option>
-        </select><br>
-        <input type="submit" name="submit" value="Submit">
-    </form>
+        if($colour === '#0f0')
+            {echo ' selected';}
+        ?>>green</option>
+        <option value="#00f"
+        <?php
+        if($colour === '#00f')
+            {echo ' selected';}
+        ?>>blue</option>
+    </select><br>
+    <input type="submit" name="submit" value="Submit">
+</form>
 </body>
 </html>
