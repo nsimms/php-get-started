@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>PHP database select</title>
+    <title>PHP database select</title>
 </head>
 <body>
-	<?php
+    <?php
 
 	readfile('navigation-tmpl.html');
 
 	$db = mysqli_connect('localhost', 'root', '', 'test');
 
+    //var_dump($db);
+    
+    //if()
+    
 	$result = mysqli_query($db, "select * from users");
 
 	foreach ($result as $row) {
